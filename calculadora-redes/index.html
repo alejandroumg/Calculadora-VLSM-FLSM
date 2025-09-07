@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
+  <script src="app.js"></script>
+  <meta charset="UTF-8">
+  <title>Calculadora de Redes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Calculadora de Redes (VLSM / FLSM)</h1>
+
+  <!-- Pestañas -->
+  <div class="tabs">
+    <button class="tablink active" onclick="openTab(event, 'vlsm')">VLSM</button>
+    <button class="tablink" onclick="openTab(event, 'flsm')">FLSM</button>
+  </div>
+
+  <!-- Contenido VLSM -->
+  <div id="vlsm" class="tabcontent" style="display:block;">
+    <h2>VLSM</h2>
+    <form id="vlsmForm">
+      <label>Dirección de Red: 
+        <input type="text" id="network" placeholder="192.168.1.0">
+      </label><br>
+      <label>Prefijo: 
+        <input type="number" id="prefix" placeholder="24"> 
+      </label><br>
+      <label>Hosts requeridos (separados por coma): 
+        <input type="text" id="hosts" placeholder="50,20,10,5">
+      </label><br>
+      <button type="button" onclick="calculateVLSM()">Calcular</button>
+      <button type="button" onclick="clearVLSM()">Limpiar</button>
+      <button type="button" id="pdf" onclick="downloadPDF('vlsm')">Exportar a PDF</button>
+    </form>
+    <div id="vlsmResult"></div>
+  </div>
+
+  <!-- Contenido FLSM -->
+  <div id="flsm" class="tabcontent">
+    <h2>FLSM</h2>
+    <form id="flsmForm">
+      <label>Dirección de Red: 
+        <input type="text" id="flsmNetwork" placeholder="192.168.1.0">
+      </label><br>
+      <label>Prefijo: 
+        <input type="number" id="flsmPrefix" placeholder="24">
+      </label><br>
+      <label>Números de subredes: 
+        <input type="number" id="flsmHosts" placeholder="30">
+      </label><br>
+      <button type="button" onclick="calculateFLSM()">Calcular</button>
+      <button type="button" onclick="clearFLSM()">Limpiar</button>
+      <button type="button" id="pdf" onclick="downloadPDF('flsm')">Exportar a PDF</button>
+    </form>
+    <div id="flsmResult"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
